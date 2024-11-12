@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join HeartLink - Spread Kindness</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-custom">
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="glass-effect p-8 rounded-lg shadow-md w-[500px] border-4 border-transparent">
+            <!-- Step indicator -->
+            <div class="flex justify-between mb-8">
+                <div class="step active" data-step="1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Choose Role</div>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Basic Info</div>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Profile Setup</div>
+                </div>
+            </div>
+
+            <!-- Step 1: Role Selection -->
+            <div id="step1" class="step-content">
+                <h2 class="text-2xl font-bold text-center mb-6">Choose Your Role</h2>
+                <div class="space-y-4">
+                    <div class="role-option" onclick="selectRole('giver')">
+                        <i class="fas fa-hand-holding-heart text-blue-500 text-2xl"></i>
+                        <div class="ml-4">
+                            <h3 class="font-semibold">Kindness Giver</h3>
+                            <p class="text-gray-600">I want to help others and spread kindness</p>
+                        </div>
+                    </div>
+                    <div class="role-option" onclick="selectRole('receiver')">
+                        <i class="fas fa-hands-receiving text-green-500 text-2xl"></i>
+                        <div class="ml-4">
+                            <h3 class="font-semibold">Support Seeker</h3>
+                            <p class="text-gray-600">I'm looking for help or support</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Basic Information -->
+            <div id="step2" class="step-content hidden">
+                <h2 class="text-2xl font-bold text-center mb-6">Create Your Account</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700">Name</label>
+                        <input type="text" id="name" required
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700">Email</label>
+                        <input type="email" id="email" required
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700">Password</label>
+                        <input type="password" id="password" required
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Profile Setup -->
+            <div id="step3" class="step-content hidden">
+                <h2 class="text-2xl font-bold text-center mb-6">Complete Your Profile</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700">Bio</label>
+                        <textarea id="bio" rows="3"
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                            placeholder="Tell us a bit about yourself..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700">Location</label>
+                        <input type="text" id="location"
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700">Interests</label>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <label class="interest-tag">
+                                <input type="checkbox" name="interests" value="physical_help">
+                                Physical Help
+                            </label>
+                            <label class="interest-tag">
+                                <input type="checkbox" name="interests" value="emotional_support">
+                                Emotional Support
+                            </label>
+                            <label class="interest-tag">
+                                <input type="checkbox" name="interests" value="skill_sharing">
+                                Skill Sharing
+                            </label>
+                            <label class="interest-tag">
+                                <input type="checkbox" name="interests" value="resources">
+                                Resources
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="mt-6 flex justify-between">
+                <button id="prevBtn" onclick="prevStep()" class="hidden px-6 py-2 text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-arrow-left mr-2"></i>Back
+                </button>
+                <button id="nextBtn" onclick="nextStep()" 
+                    class="ml-auto px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                    <span id="nextBtnText">Next</span>
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+
+            <p class="mt-4 text-center text-gray-600">
+                Already have an account? 
+                <a href="/login" class="text-blue-500 hover:text-blue-600">Login</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="/js/register.js"></script>
+</body>
+</html> 

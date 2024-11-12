@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kindness Map - HeartLink</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-custom">
+    <div class="container mx-auto px-4 py-8">
+        <div class="glass-effect rounded-lg p-8">
+            <h1 class="text-3xl font-bold text-center mb-8">Kindness Map</h1>
+            <div class="space-y-6 mb-8">
+                <p class="text-lg">
+                    The <strong>Kindness Map</strong> is an interactive feature of the Random Acts of Kindness Network (RAKN) that visualizes acts of kindness happening in real-time across neighborhoods, cities, and beyond. By using this map, users can see a dynamic view of kindness activities, whether they’re taking place right down the street or across the globe. Each act is marked with icons or color-coded pins to represent different types of kindness, like skill-sharing, emotional support, or resource donations, allowing users to quickly identify the nature of each act.
+                </p>
+                <p class="text-lg">
+                    The Kindness Map offers filters for proximity, type, and urgency, making it easy for users to find opportunities that align with their interests or meet urgent community needs. This feature also highlights “Kindness Hotspots,” areas where acts of kindness are especially frequent, inspiring others to join in. The map not only encourages participation but also lets users witness the ripple effect of kindness in their community and beyond. By fostering real-world connections and promoting meaningful interactions, the Kindness Map helps build a global network of compassion, one location at a time.
+                </p>
+            </div>
+            <div id="map" class="w-full h-[500px] rounded-lg">
+                <!-- Map will be loaded here -->
+            </div>
+        </div>
+    </div>
+    <script src="/js/router.js"></script>
+    <script src="/js/kindness-map.js"></script>
+</body>
+</html>

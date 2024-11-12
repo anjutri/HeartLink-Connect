@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeartLink - Community of Kindness</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-custom">
+    <!-- Disclaimer Banner -->
+    <div class="bg-blue-100 text-blue-800 px-4 py-2 text-center">
+        <p class="text-sm">
+            Academic Project - AKS UNIVERSITY, SATNA | 
+            5th BTECH (CSE) | 
+            Submitted by: Anjali Tripathi (B2255R10106169)
+        </p>
+    </div>
+
+    <!-- Landing Page Content for Non-Authenticated Users -->
+    <div id="unauthenticatedContent">
+        <nav class="glass-effect shadow-lg">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="flex justify-between items-center py-4">
+                    <div class="flex items-center space-x-4">
+                        <i class="fas fa-heart text-red-500 text-2xl"></i>
+                        <span class="font-bold text-2xl text-blue-600">HeartLink</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <a href="/about" class="nav-link">About</a>
+                        <a href="/kindness-map" class="nav-link">Kindness Map</a>
+                        <a href="/stories" class="nav-link">Stories</a>
+                        <a href="/login" class="nav-link">Log in</a>
+                        <a href="/register" class="btn btn-primary">Join Now</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="container mx-auto px-4 py-12">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h1 class="text-5xl font-bold text-gray-800 mb-6">
+                    Join the Kindness Revolution
+                </h1>
+                <p class="text-xl text-gray-600 mb-8">
+                    Connect with your community through acts of kindness. Whether you want to help or need support, 
+                    HeartLink makes it easy to spread compassion.
+                </p>
+                <div class="space-x-4">
+                    <a href="/register" class="btn btn-primary" onclick="setRole('giver')">
+                        <i class="fas fa-hand-holding-heart mr-2"></i>Become a Kindness Giver
+                    </a>
+                    <a href="/register" class="btn btn-secondary" onclick="setRole('receiver')">
+                        <i class="fas fa-hands-receiving mr-2"></i>Request Support
+                    </a>
+                </div>
+            </div>
+
+            <!-- Weekly Challenge Section -->
+            <div class="glass-effect rounded-lg p-8 mb-16">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Weekly Kindness Challenge</h2>
+                    <p class="text-xl text-gray-600">Join our community goal of 500 acts of kindness this week!</p>
+                </div>
+                <div class="relative pt-1">
+                    <div class="flex mb-2 items-center justify-between">
+                        <div>
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200">
+                                Progress
+                            </span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs font-semibold inline-block text-blue-600">
+                                342/500 Acts
+                            </span>
+                        </div>
+                    </div>
+                    <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+                        <div style="width:68%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Stories -->
+            <div class="max-w-6xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Recent Stories of Kindness</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Story Cards will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Impact Stats -->
+            <div class="grid md:grid-cols-4 gap-6 mb-16">
+                <div class="glass-effect p-6 rounded-lg text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">1,234</div>
+                    <div class="text-gray-600">Acts of Kindness</div>
+                </div>
+                <div class="glass-effect p-6 rounded-lg text-center">
+                    <div class="text-3xl font-bold text-green-600 mb-2">567</div>
+                    <div class="text-gray-600">Active Members</div>
+                </div>
+                <div class="glass-effect p-6 rounded-lg text-center">
+                    <div class="text-3xl font-bold text-purple-600 mb-2">89</div>
+                    <div class="text-gray-600">Communities</div>
+                </div>
+                <div class="glass-effect p-6 rounded-lg text-center">
+                    <div class="text-3xl font-bold text-red-600 mb-2">4.9★</div>
+                    <div class="text-gray-600">User Rating</div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Ready to Make a Difference?</h2>
+                <p class="text-xl text-gray-600 mb-8">Join our community and start your kindness journey today.</p>
+                <a href="/register" class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                    <i class="fas fa-heart mr-2"></i>Get Started
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Content for Authenticated Users -->
+    <div id="authenticatedContent" class="hidden">
+        <!-- Your existing dashboard content -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="glass-effect mt-8">
+        <div class="max-w-6xl mx-auto px-4 py-6">
+            <div class="text-center">
+                <p class="text-gray-600 mb-2">© 2024 HeartLink. All rights reserved.</p>
+                <p class="text-sm text-gray-500">
+                    Academic Project - AKS UNIVERSITY, SATNA<br>
+                    5th BTECH (CSE)<br>
+                    Submitted by: Anjali Tripathi (B2255R10106169)
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/router.js"></script>
+    <script src="/js/dashboard.js"></script>
+    <script>
+    function setRole(role) {
+        localStorage.setItem('selectedRole', role);
+    }
+    </script>
+</body>
+</html> 

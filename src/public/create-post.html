@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post - HeartLink</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-custom">
+    <nav class="bg-white shadow-lg mb-6">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <a href="/" class="flex items-center py-4">
+                        <span class="font-semibold text-blue-500 text-lg">HeartLink</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <a href="/dashboard" class="py-2 px-4 text-gray-500 hover:text-gray-700">Dashboard</a>
+                    <button onclick="logout()" class="py-2 px-4 text-gray-500 hover:text-gray-700">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-effect rounded-lg shadow-lg p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                    <i class="fas fa-heart text-red-500 mr-3"></i>
+                    Create an Act of Kindness
+                </h2>
+
+                <form id="createPostForm" class="space-y-6">
+                    <!-- Title Input -->
+                    <div class="form-group">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
+                            <i class="fas fa-heading mr-2"></i>Title
+                        </label>
+                        <input type="text" id="title" name="title" required
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                            placeholder="Give your act of kindness a title">
+                    </div>
+
+                    <!-- Content Input -->
+                    <div class="form-group">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
+                            <i class="fas fa-align-left mr-2"></i>Description
+                        </label>
+                        <textarea id="content" name="content" rows="6" required
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                            placeholder="Describe how you want to help or what kind of help you need..."></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Type Selection -->
+                        <div class="form-group">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">
+                                <i class="fas fa-tags mr-2"></i>Type
+                            </label>
+                            <select id="type" name="type" required
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                                <option value="">Select Type</option>
+                                <option value="Physical Help">Physical Help</option>
+                                <option value="Emotional Support">Emotional Support</option>
+                                <option value="Resources">Resources</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Urgency Selection -->
+                        <div class="form-group">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">
+                                <i class="fas fa-exclamation-circle mr-2"></i>Urgency
+                            </label>
+                            <select id="urgency" name="urgency" required
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                                <option value="">Select Urgency</option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Location Input -->
+                    <div class="form-group">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
+                            <i class="fas fa-map-marker-alt mr-2"></i>Location
+                        </label>
+                        <input type="text" id="location" name="location"
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                            placeholder="Where will this act of kindness take place?">
+                    </div>
+
+                    <!-- Anonymous Option -->
+                    <div class="form-group flex items-center space-x-2">
+                        <input type="checkbox" id="isAnonymous" name="isAnonymous"
+                            class="rounded text-blue-500 focus:ring-blue-500">
+                        <label class="text-gray-700">
+                            <i class="fas fa-user-secret mr-2"></i>Post Anonymously
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit"
+                        class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Create Post
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/router.js"></script>
+    <script src="/js/create-post.js"></script>
+</body>
+</html> 

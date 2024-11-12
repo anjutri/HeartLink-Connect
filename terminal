@@ -1,0 +1,91 @@
+mkdir heartlink
+cd heartlink
+npm init -y
+npm install express mongoose dotenv bcryptjs jsonwebtoken cors helmet morgan ejs
+npm install nodemon --save-dev
+npm install express-rate-limit express-mongo-sanitize xss-clean
+npm install eslint jest --save-dev
+npm install multer
+mkdir src
+cd src
+mkdir controllers models routes middleware config
+mkdir -p src/views src/public src/routes src/models src/middleware src/config src/scripts
+touch app.js
+
+# On Windows (in Admin PowerShell)
+net start MongoDB
+
+# On macOS
+brew services start mongodb-community
+
+# On Linux
+sudo systemctl start mongod
+
+# Stop the current process (if running)
+# Clear node_modules and package-lock.json
+rm -rf node_modules package-lock.json
+
+# Reinstall all dependencies
+npm install express mongoose dotenv bcryptjs jsonwebtoken cors helmet morgan ejs
+npm install nodemon --save-dev
+npm install express-rate-limit express-mongo-sanitize xss-clean
+npm install eslint jest --save-dev
+npm install multer
+
+npm run dev
+
+chmod +x start.sh
+
+mkdir -p src/public/css src/public/js src/public/images
+touch src/public/css/styles.css src/public/js/dashboard.js
+
+# Create a default avatar image in the public images directory
+mkdir -p src/public/images
+# Copy a default avatar image to this location or create one
+touch src/public/images/default-avatar.png
+
+# Download or create a background image and save it as 'background.jpg'
+
+npm run create-test-user
+
+# Check your project structure
+ls -R src/public/
+
+# Create necessary directories
+mkdir -p src/public
+mkdir -p src/public/js
+mkdir -p src/public/css
+mkdir -p src/public/images
+
+# Move to the public directory
+cd src/public
+
+# Create the login page and its assets
+touch login.html
+touch js/login.js
+touch css/styles.css
+
+# Set proper permissions
+chmod 644 src/public/login.html
+chmod 644 src/public/js/login.js
+chmod 644 src/public/css/styles.css
+
+# Stop any running servers
+pkill node
+
+# Verify files
+npm run verify-files
+
+# If any files are missing, create them
+# Then start the server
+npm run dev
+
+# Test if files are accessible
+curl http://localhost:5000/login
+curl http://localhost:5000/css/styles.css
+curl http://localhost:5000/js/login.js
+
+mkdir -p src/public/uploads/profiles
+chmod 777 src/public/uploads/profiles
+
+touch src/public/uploads/profiles/.gitkeep
