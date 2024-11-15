@@ -8,11 +8,70 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
+<div class="container mx-auto px-4">
+    <div class="flex items-center space-x-3 justify-end py-4">
+        <a href="/dashboard" class="py-2 px-4 text-gray-500 hover:text-gray-700">Dashboard</a>
+        <button onclick="logout()" class="py-2 px-4 text-gray-500 hover:text-gray-700">Logout</button>
+    </div>
+</div>
 <body class="bg-custom">
     <div class="container mx-auto px-4 py-8">
         <div class="glass-effect rounded-lg p-8">
-            <h1 class="text-3xl font-bold text-center mb-8">Community Posts</h1>
-            <div id="postsContainer" class="space-y-4">
+            <div class="flex items-center justify-center mb-8">
+                <i class="fas fa-heart text-red-500 text-3xl mr-3"></i>
+                <h1 class="text-3xl font-bold text-center">Community Posts</h1>
+            </div>
+
+            <!-- Filter section with improved UI -->
+            <div class="flex flex-wrap gap-4 mb-8 bg-white/30 p-4 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <i class="fas fa-filter text-gray-600 mr-2"></i>
+                    <span class="text-gray-700 font-medium">Filters:</span>
+                </div>
+                
+                <div class="flex items-center">
+                    <i class="fas fa-tags text-gray-500 mr-2"></i>
+                    <select id="typeFilter" class="form-select rounded-lg bg-white/70 border-0 shadow-sm hover:bg-white/90 transition-all">
+                        <option value="">All Types</option>
+                        <option value="Physical Help">🤝 Physical Help</option>
+                        <option value="Emotional Support">💝 Emotional Support</option>
+                        <option value="Resources">📦 Resources</option>
+                        <option value="Other">✨ Other</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center">
+                    <i class="fas fa-clock text-gray-500 mr-2"></i>
+                    <select id="urgencyFilter" class="form-select rounded-lg bg-white/70 border-0 shadow-sm hover:bg-white/90 transition-all">
+                        <option value="">All Urgencies</option>
+                        <option value="High">🔴 High</option>
+                        <option value="Medium">🟡 Medium</option>
+                        <option value="Low">🟢 Low</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center">
+                    <i class="fas fa-tasks text-gray-500 mr-2"></i>
+                    <select id="statusFilter" class="form-select rounded-lg bg-white/70 border-0 shadow-sm hover:bg-white/90 transition-all">
+                        <option value="">All Statuses</option>
+                        <option value="OPEN">📖 Open</option>
+                        <option value="IN_PROGRESS">⚡ In Progress</option>
+                        <option value="COMPLETED">✅ Completed</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Create Post Button -->
+            <div class="flex justify-end mb-6">
+                <button onclick="window.location.href='/create-post'" 
+                        class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-lg 
+                               shadow-lg hover:shadow-xl transition-all duration-300 flex items-center">
+                    <i class="fas fa-plus-circle mr-2"></i>
+                    Create New Posts
+                </button>
+            </div>
+
+            <div id="postsContainer" class="space-y-6">
                 <!-- Posts will be loaded here -->
             </div>
         </div>

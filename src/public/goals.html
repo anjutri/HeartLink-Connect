@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Goals - HeartLink</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gradient-pattern">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-4 flex items-center">
+            <i class='bx bx-target-lock mr-2 text-primary'></i>Set Your Goals
+        </h1>
+        
+        <!-- Dropdown for Status Selection -->
+        <div class="mb-4">
+            <label for="status" class="block text-sm font-medium text-gray-700">Select Status</label>
+            <select id="status" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                <option value="all">All</option>
+                <option value="in-progress">In Progress</option>
+                <option value="completed">Completed</option>
+            </select>
+        </div>
+
+        <!-- Dropdown for Post Types -->
+        <div class="mb-4">
+            <label for="postType" class="block text-sm font-medium text-gray-700">Select Post Type</label>
+            <select id="postType" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                <option value="personal">Personal</option>
+                <option value="community">Community</option>
+                <option value="work">Work</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <form id="goalForm" class="bg-white p-6 rounded-lg shadow-md">
+            <div class="mb-4">
+                <label for="goal" class="block text-sm font-medium text-gray-700">Goal</label>
+                <input type="text" id="goal" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+            </div>
+            <div class="mb-4">
+                <label for="streak" class="block text-sm font-medium text-gray-700">Streak Days</label>
+                <input type="number" id="streak" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+            </div>
+            <div class="mb-4">
+                <label for="comment" class="block text-sm font-medium text-gray-700">Comment</label>
+                <input type="text" id="comment" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="Add a comment...">
+            </div>
+
+            <!-- Dropdown for Support Types -->
+            <div class="mb-4">
+                <label for="supportType" class="block text-sm font-medium text-gray-700">Select Support Type</label>
+                <select id="supportType" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                    <option value="physical-help">Physical Help</option>
+                    <option value="emotional-support">Emotional Support</option>
+                    <option value="resources">Resources</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center">
+                <i class='bx bx-save mr-1'></i>Save Goal
+            </button>
+        </form>
+        <div id="message" class="mt-4"></div>
+
+        <!-- New Section: Goal Summary -->
+        <div id="goalSummary" class="mt-8 bg-white p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-2">Goal Summary</h2>
+            <p id="totalGoals" class="text-gray-700">Total Goals: 0</p>
+            <p id="longestStreak" class="text-gray-700">Longest Streak: 0 days</p>
+        </div>
+
+        <!-- New Section: Goal History -->
+        <div id="goalHistory" class="mt-8 bg-white p-4 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-2">Goal History</h2>
+            <div id="goalsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Goals will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const goalForm = document.getElementById('goalForm');
+            const goalsContainer = document.getElementById('goalsContainer');
+            const totalGoalsElement = document.getElementById('totalGoals');
+            const longestStreakElement = document.getElementById('longestStreak');
+
+            // Load goals from localStorage
+            let goals = JSON.parse(localStorage.getItem('goals')) || [];
+
+            // Update goal summary
+            totalGoalsElement.textContent = `Total Goals: ${goals.length}`;
+            const longestStreak = goals.reduce((max, goal) => Math.max(max, goal.streak), 0);
+            longestStreakElement.textContent = `Longest Streak: ${longestStreak} days 🔥`;
+
+            // Display existing goals
+            goals.forEach((goal, index) => {
+                const goalElement = document.createElement('div');
+                goalElement.className = 'bg-white/50 rounded-lg p-4';
+                goalElement.innerHTML = `
+                    <h3 class="font-medium text-gray-800">${goal.goal}</h3>
+                    <p class="text-sm text-gray-500">Streak: ${goal.streak} days 🔥</p>
+                    <p class="text-sm text-gray-500">Comment: ${goal.comment || 'No comment'}</p>
+                    <p class="text-sm text-gray-500">Post Type: ${goal.postType || 'N/A'}</p>
+                    <p class="text-sm text-gray-500">Support Type: ${goal.supportType || 'N/A'}</p>
+                    <button class="text-red-500 mt-2" onclick="deleteGoal(${index})">Delete Goal</button>
+                `;
+                goalsContainer.appendChild(goalElement);
+            });
+
+            // Handle form submission
+            goalForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const goal = document.getElementById('goal').value;
+                const streak = document.getElementById('streak').value;
+                const comment = document.getElementById('comment').value;
+                const postType = document.getElementById('postType').value;
+                const supportType = document.getElementById('supportType').value;
+
+                // Push the new goal into the array
+                goals.push({ goal, streak, comment, postType, supportType });
+                localStorage.setItem('goals', JSON.stringify(goals));
+
+                document.getElementById('message').textContent = 'Goal saved successfully!';
+                setTimeout(() => {
+                    window.location.reload(); // Reload to show updated goals
+                }, 1000); // Redirect after 1 second
+            });
+        });
+
+        // Function to delete a goal
+        function deleteGoal(index) {
+            let goals = JSON.parse(localStorage.getItem('goals')) || [];
+            goals.splice(index, 1); // Remove the goal at the specified index
+            localStorage.setItem('goals', JSON.stringify(goals)); // Update localStorage
+            window.location.reload(); // Reload to show updated goals
+        }
+    </script>
+</body>
+</html> 

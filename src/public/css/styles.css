@@ -103,6 +103,7 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
+    
 }
 
 /* Add these styles to your existing styles.css */
@@ -198,6 +199,7 @@
 
 .glass-effect {
     @apply bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-lg;
+    
 }
 
 /* Add these new styles to your existing CSS file */

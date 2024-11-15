@@ -351,4 +351,40 @@ function handleProfilePictureChange(event) {
         }
         uploadProfilePicture(file);
     }
-} 
+}
+
+// Add this function to your existing dashboard.js
+function loadUserEvents() {
+    const userEvents = [
+        {
+            title: "Community Food Drive",
+            date: "2024-04-15",
+            time: "10:00 AM - 11:00 AM",
+            role: "Volunteer",
+            status: "Confirmed"
+        }
+        // Add more registered events
+    ];
+
+    const container = document.getElementById('userEvents');
+    container.innerHTML = userEvents.map(event => `
+        <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow">
+            <div>
+                <h3 class="font-bold">${event.title}</h3>
+                <p class="text-gray-600">${event.date} | ${event.time}</p>
+                <p class="text-sm">Role: ${event.role}</p>
+            </div>
+            <div>
+                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full">
+                    ${event.status}
+                </span>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Call this function when the dashboard loads
+document.addEventListener('DOMContentLoaded', () => {
+    // ... existing dashboard initialization code ...
+    loadUserEvents();
+}); 
