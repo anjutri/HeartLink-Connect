@@ -152,6 +152,7 @@ async function joinEvent(eventId) {
         console.error('Error joining event:', error);
         alert('Failed to join event. Please try again.');
     }
+
 }
 
 async function editEvent(eventId) {
