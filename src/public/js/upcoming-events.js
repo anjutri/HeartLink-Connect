@@ -60,7 +60,10 @@ function setupEventListeners() {
     document.getElementById('searchEvent').addEventListener('input', filterEvents);
     document.getElementById('categoryFilter').addEventListener('change', filterEvents);
     document.getElementById('dateFilter').addEventListener('change', filterEvents);
-    document.getElementById('createEventForm').addEventListener('submit', handleCreateEvent);
+    document.getElementById('createEventForm').addEventListener('submit', 
+        
+        
+    );
 }
 
 function filterEvents() {
@@ -119,8 +122,19 @@ async function handleCreateEvent(e) {
     try {
         // Add new event to the events array
         events.push(newEvent);
-        // Save to localStorage
-        localStorage.setItem('events', JSON.stringify(events));
+        // Save to database
+        const response = await fetch('/api/events', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(newEvent)
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to save event');
+        }
         
         alert('Event created successfully!');
         closeCreateEventModal();

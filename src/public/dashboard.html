@@ -255,9 +255,12 @@
             <script>
                 // Load events from localStorage on page load
                 document.addEventListener('DOMContentLoaded', () => {
-                    const events = JSON.parse(localStorage.getItem('events')) || [];
-                    const eventsContainer = document.getElementById('eventsContainer');
-                    
+                    // const events = JSON.parse(localStorage.getItem('events')) || [];
+                    // const eventsContainer = document.getElementById('eventsContainer');
+                    fetch('/api/events')
+                        .then(response => response.json())
+                        .then(events => {
+                            
                     if (events.length === 0) {
                         eventsContainer.innerHTML = `
                             <div class="col-span-3 text-center text-gray-500 py-8">
